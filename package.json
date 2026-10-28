@@ -1,5 +1,5 @@
 {
-  "name": "extended-ts-types",
+  "name": "typescript-extended-types",
   "version": "0.1.0",
   "description": "Extended utility types and type guards for TypeScript",
   "keywords": [
@@ -13,12 +13,12 @@
   "author": "Nazil Rakhimov",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nile-outcast/extended-ts-types.git"
+    "url": "git+https://github.com/nile-outcast/typescript-extended-types.git"
   },
   "bugs": {
-    "url": "https://github.com/nile-outcast/extended-ts-types/issues"
+    "url": "https://github.com/nile-outcast/typescript-extended-types/issues"
   },
-  "homepage": "https://github.com/nile-outcast/extended-ts-types#readme",
+  "homepage": "https://github.com/nile-outcast/typescript-extended-types#readme",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/index.cjs",

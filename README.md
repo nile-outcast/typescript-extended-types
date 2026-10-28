@@ -1,9 +1,9 @@
-# extended-ts-types
+# typescript-extended-types
 
-[![npm version](https://img.shields.io/npm/v/extended-ts-types.svg)](https://www.npmjs.com/package/extended-ts-types)
-[![CI](https://github.com/nile-outcast/extended-ts-types/actions/workflows/ci.yml/badge.svg)](https://github.com/nile-outcast/extended-ts-types/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/npm/l/extended-ts-types.svg)](LICENSE)
-[![minzip](https://img.shields.io/bundlephobia/minzip/extended-ts-types)](https://bundlephobia.com/package/extended-ts-types)
+[![npm version](https://img.shields.io/npm/v/typescript-extended-types.svg)](https://www.npmjs.com/package/typescript-extended-types)
+[![CI](https://github.com/nile-outcast/typescript-extended-types/actions/workflows/ci.yml/badge.svg)](https://github.com/nile-outcast/typescript-extended-types/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/npm/l/typescript-extended-types.svg)](LICENSE)
+[![minzip](https://img.shields.io/bundlephobia/minzip/typescript-extended-types)](https://bundlephobia.com/package/typescript-extended-types)
 
 Extended utility types and type guards for TypeScript. Zero runtime dependencies.
 
@@ -12,7 +12,7 @@ Extended utility types and type guards for TypeScript. Zero runtime dependencies
 ## Installation
 
 ```bash
-npm install extended-ts-types
+npm install typescript-extended-types
 ```
 
 Requires Node.js 18 or later. Ships ESM and CommonJS builds with type declarations.
@@ -20,7 +20,7 @@ Requires Node.js 18 or later. Ships ESM and CommonJS builds with type declaratio
 ## Usage
 
 ```ts
-import { isNumber, isString, type Nullable } from 'extended-ts-types'
+import { isNumber, isString, type Nullable } from 'typescript-extended-types'
 
 type User = { name: Nullable<string>; age: unknown }
 
@@ -53,7 +53,7 @@ function formatUser(user: User): string {
 - **`RequireKeys<T, K>`**: makes only the keys `K` required.
 
 ```ts
-import type { DeepPartial, RequireKeys } from 'extended-ts-types'
+import type { DeepPartial, RequireKeys } from 'typescript-extended-types'
 
 type Config = { server: { host: string; port: number } }
 const patch: DeepPartial<Config> = { server: { port: 8080 } }
@@ -70,7 +70,7 @@ type VerifiedContact = RequireKeys<Contact, 'email'> // email: string
 - **`isDefined(value)`**: `value is NonNullable<T>`. Returns `false` for both `null` and `undefined`, so it is the negation of `isNullish`.
 
 ```ts
-import { isDefined } from 'extended-ts-types'
+import { isDefined } from 'typescript-extended-types'
 
 const names = ['Ann', null, undefined, 'Bob']
 const present = names.filter(isDefined) // Array<string>
@@ -93,7 +93,7 @@ const present = names.filter(isDefined) // Array<string>
 - **`isOneOf(options)`**: returns a guard for a fixed list of values.
 
 ```ts
-import { isOneOf } from 'extended-ts-types'
+import { isOneOf } from 'typescript-extended-types'
 
 const isStatus = isOneOf(['idle', 'busy'] as const)
 
@@ -126,7 +126,7 @@ npm run check:package # publint and attw on the packed package
 
 ## Contributing
 
-Issues and pull requests are welcome on [GitHub](https://github.com/nile-outcast/extended-ts-types).
+Issues and pull requests are welcome on [GitHub](https://github.com/nile-outcast/typescript-extended-types).
 
 Before opening a pull request:
 

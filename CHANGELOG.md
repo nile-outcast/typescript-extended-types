@@ -43,7 +43,7 @@ Package infrastructure:
 
 - Dual ESM and CommonJS builds with type declarations for both entry points.
 - Tree-shakeable build (`sideEffects: false`), no runtime dependencies, Node.js >= 18.
-- CI workflow running typecheck, lint, format and tests on Node.js 18, 20 and 22.
+- CI workflow running typecheck, lint, format and tests on Node.js 20, 22 and 24.
 - Release workflow publishing to npm with provenance attestations on `v*` tags.
 
 ### Breaking changes
@@ -54,5 +54,5 @@ Relative to pre-release drafts of this package, which was never published:
 - Removed the `isArray`, `isEmptyArray`, `isNonNullable`, `isEmptyString` and `isNonEmptyString` guards, and the `Brand` type.
 - `isDefined` now returns `false` for `null` as well as `undefined`, so it is the exact negation of `isNullish`.
 
-[unreleased]: https://github.com/nile-outcast/extended-ts-types/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/nile-outcast/extended-ts-types/releases/tag/v0.1.0
+[unreleased]: https://github.com/nile-outcast/typescript-extended-types/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/nile-outcast/typescript-extended-types/releases/tag/v0.1.0
