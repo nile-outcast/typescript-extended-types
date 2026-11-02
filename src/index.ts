@@ -6,6 +6,8 @@ export type {
   Optional,
 } from './types/basic'
 
+export type { StringFrom } from './types/branded'
+
 export type {
   DeepPartial,
   DeepReadonly,
@@ -25,3 +27,4 @@ export {
   isPromise,
 } from './guards/objects'
 export { isBoolean, isNumber, isString } from './guards/primitives'
+export { toJsonString } from './types/branded'

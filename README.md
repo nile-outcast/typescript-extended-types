@@ -62,6 +62,28 @@ type Contact = { id: number; email?: string }
 type VerifiedContact = RequireKeys<Contact, 'email'> // email: string
 ```
 
+### Branded
+
+- **`StringFrom<T>`**: a string produced by `JSON.stringify` from a value of type `T`. The type is nominal: a plain `string` is not assignable to it, so values are expected to come from `toJsonString`. `null` and `undefined` are rejected by the constraint.
+- **`toJsonString(value)`**: serializes `value` and returns `StringFrom<T>`, where `T` is inferred from the argument. Throws a `TypeError` for values `JSON.stringify` turns into `undefined` (`undefined`, functions, symbols).
+
+```ts
+import { toJsonString, type StringFrom } from 'typescript-extended-types'
+
+type Config = { host: string; port: number }
+
+function publish(config: StringFrom<Config>) {
+  // config is a string, so any string API accepts it
+}
+
+publish(toJsonString({ host: 'localhost', port: 8080 }))
+
+// @ts-expect-error a plain string carries no brand
+publish('{"host":"localhost"}')
+```
+
+The brand records where the string came from, not what it contains: it does not prove that parsing it back gives `T`. `Date` becomes a string, `Map` and `Set` become `{}`, properties with `undefined` values are dropped, and `toJSON` may replace the value. For input coming from outside (an API response, a file), parse and validate it with a schema or a type guard instead of asserting `StringFrom<T>`.
+
 ## Type guards
 
 ### Nullish and definedness

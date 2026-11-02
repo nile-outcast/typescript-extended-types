@@ -9,8 +9,10 @@ import type {
   Optional,
   Prettify,
   RequireKeys,
+  StringFrom,
   ValueOf,
 } from '../index'
+import { toJsonString } from '../index'
 
 test('basic types', () => {
   expectTypeOf<Nullish>().toEqualTypeOf<null | undefined>()
@@ -92,4 +94,44 @@ test('RequireKeys makes only the listed keys required', () => {
     name: string
     email?: string
   }>()
+})
+
+test('StringFrom is a branded string', () => {
+  type Config = { host: string; port: number }
+
+  const json = toJsonString({ host: 'localhost', port: 8080 })
+
+  expectTypeOf(json).toEqualTypeOf<StringFrom<Config>>()
+  expectTypeOf(json).toExtend<string>()
+
+  const asString: string = json
+  void asString
+
+  // @ts-expect-error a plain string carries no brand
+  const raw: StringFrom<Config> = '{"host":"localhost"}'
+  void raw
+
+  // @ts-expect-error null is rejected by the constraint
+  type WithNull = StringFrom<null>
+
+  // @ts-expect-error undefined is rejected by the constraint
+  type WithUndefined = StringFrom<undefined>
+})
+
+test('toJsonString brands the inferred argument type', () => {
+  const Status = { Idle: 'idle', Busy: 'busy' } as const
+  const count: number = 42
+  const tags: Array<string> = ['a', 'b']
+
+  expectTypeOf(toJsonString(Status)).toEqualTypeOf<
+    StringFrom<{ readonly Idle: 'idle'; readonly Busy: 'busy' }>
+  >()
+  expectTypeOf(toJsonString(count)).toEqualTypeOf<StringFrom<number>>()
+  expectTypeOf(toJsonString(tags)).toEqualTypeOf<StringFrom<Array<string>>>()
+
+  // @ts-expect-error null is rejected by the constraint
+  toJsonString(null)
+
+  // @ts-expect-error undefined is rejected by the constraint
+  toJsonString(undefined)
 })

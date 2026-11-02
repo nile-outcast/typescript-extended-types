@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+Branded types:
+
+- `StringFrom<T>` — a string produced by `JSON.stringify` from a value of type `T`. The type is nominal, so a plain `string` is not assignable to it; `null` and `undefined` are rejected by the `NonNullable<unknown>` constraint.
+- `toJsonString(value)` — serializes `value` and returns `StringFrom<T>` with `T` inferred from the argument. Throws a `TypeError` for values `JSON.stringify` turns into `undefined` (`undefined`, functions, symbols).
+
 ## [0.1.0] - 2026-10-28
 
 First published release.
